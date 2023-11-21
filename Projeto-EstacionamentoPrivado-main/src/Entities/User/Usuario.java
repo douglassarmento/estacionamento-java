@@ -1,3 +1,5 @@
+package src.Entities.User;
+
 public class Usuario {
     private int idUser;
     private String cpf, nome, email, senha;

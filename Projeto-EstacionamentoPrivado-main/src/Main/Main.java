@@ -1,8 +1,22 @@
+package src.Main;
+
+import src.Entities.*;
+import src.Entities.User.Admin;
+import src.Entities.User.Usuario;
+import src.Entities.User.UsuarioPremium;
+import src.Utils.CadastroUsuario;
+import src.Utils.CadastroVeiculo;
+import src.Entities.parkLog;
+
 import java.util.Scanner;
 public class Main {
+
+    public static Scanner sc;
+
     public static void main(String[] args) {
         int repetir;
-        Scanner sc = new Scanner(System.in);
+
+        sc = new Scanner(System.in);
         CadastroUsuario cadastroUsuario = new CadastroUsuario();
         CadastroVeiculo cadastroVeiculo = new CadastroVeiculo();
 
@@ -10,10 +24,14 @@ public class Main {
             System.out.println("---------- Bem-vindo(a) ao Estacionamento ----------");
             System.out.println();
             System.out.println("Primeiro acesso? (1) Sim | (2) Não -> ");
+
+
             int primeiroAcesso = sc.nextInt();
-            int proximoIdUser = 0;
+
 
             if (primeiroAcesso == 1) {
+            int proximoIdUser = 0;
+
                 System.out.println();
                 System.out.println("Vamos realizar seu cadastro.");
                 System.out.println();
@@ -89,7 +107,7 @@ public class Main {
                     System.out.println("Tudo bem! Seguindo...");
                 }
 
-                System.out.println("Deseja limpar toda a tabela Usuario? (1) Sim / (2) Não -> ");
+                System.out.println("Deseja limpar toda a tabela src.Classes.User.Usuario? (1) Sim / (2) Não -> ");
                 int opcaoLimparTabela = sc.nextInt();
 
                 if (opcaoLimparTabela == 1) {

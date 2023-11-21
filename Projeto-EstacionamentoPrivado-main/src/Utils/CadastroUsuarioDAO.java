@@ -1,4 +1,8 @@
+package src.Utils;
+
+import src.Entities.User.Usuario;
 import org.jetbrains.annotations.NotNull;
+import src.Main.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +23,7 @@ public class CadastroUsuarioDAO {
             System.out.println("Usuário com id " + usuario.getidUser() + " já existe na tabela.");
             return;
         }
-        String sql = "INSERT INTO Usuario(idUser, cpf, email, nome, senha) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO src.Classes.User.Usuario(idUser, cpf, email, nome, senha) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, usuario.getidUser());

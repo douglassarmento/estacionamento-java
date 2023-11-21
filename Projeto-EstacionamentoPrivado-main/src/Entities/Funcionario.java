@@ -1,3 +1,7 @@
+package src.Entities;
+
+import src.Entities.User.Usuario;
+
 public class Funcionario extends Usuario {
     private int idFunc;
     public int getIdFunc(){return idFunc;}

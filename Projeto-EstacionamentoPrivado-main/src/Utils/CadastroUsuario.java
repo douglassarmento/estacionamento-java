@@ -1,3 +1,10 @@
+package src.Utils;
+
+import src.Entities.User.Admin;
+import src.Entities.Funcionario;
+import src.Entities.User.Usuario;
+import src.Entities.User.UsuarioPremium;
+
 import java.util.ArrayList;
 public class CadastroUsuario {
     CadastroUsuarioDAO cadastroUsuarioDAO = new CadastroUsuarioDAO();

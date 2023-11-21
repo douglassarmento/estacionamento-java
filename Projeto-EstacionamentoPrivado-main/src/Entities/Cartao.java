@@ -1,3 +1,5 @@
+package src.Entities;
+
 class Cartao {
     private String tipo;
     private String numero;

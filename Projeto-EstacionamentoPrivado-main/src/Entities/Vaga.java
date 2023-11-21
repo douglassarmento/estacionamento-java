@@ -1,3 +1,5 @@
+package src.Entities;
+
 public class Vaga {
     private String numero;
     private boolean disponivel;

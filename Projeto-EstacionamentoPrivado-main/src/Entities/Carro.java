@@ -1,3 +1,5 @@
+package src.Entities;
+
 public class Carro {
     private int idCar;
     private String placa;

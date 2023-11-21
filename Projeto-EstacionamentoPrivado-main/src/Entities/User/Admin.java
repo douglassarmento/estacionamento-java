@@ -1,3 +1,5 @@
+package src.Entities.User;
+
 public class Admin extends Usuario {
     private int idAdm;
     public int getidAdm(){return idAdm;}

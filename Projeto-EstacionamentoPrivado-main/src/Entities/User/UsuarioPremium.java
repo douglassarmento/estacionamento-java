@@ -1,3 +1,5 @@
+package src.Entities.User;
+
 public class UsuarioPremium extends Usuario {
     private int idPPre;
     public int getIdPPre(){return idPPre;}

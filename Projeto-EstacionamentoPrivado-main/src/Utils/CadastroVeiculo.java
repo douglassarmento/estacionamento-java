@@ -1,3 +1,7 @@
+package src.Utils;
+
+import src.Entities.Carro;
+
 import java.util.ArrayList;
 public class CadastroVeiculo {
     private ArrayList<Carro> carros = new ArrayList<>();

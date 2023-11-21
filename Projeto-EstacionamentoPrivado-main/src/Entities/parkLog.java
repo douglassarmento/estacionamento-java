@@ -1,3 +1,7 @@
+package src.Entities;
+
+import src.Entities.User.Usuario;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -35,29 +39,29 @@ public class parkLog {
         System.out.println();
         System.out.println("Digite uma das opções abaixo para prosseguir.");
         System.out.println();
-        System.out.println("(1) Criar Vaga(s) / (2) Editar Vaga(s) / (3) Deletar Vaga(s) / (4) Monitorar Vaga(s) / (5) Listar Usuário(s)");
+        System.out.println("(1) Criar src.Entities.Vaga(s) / (2) Editar src.Entities.Vaga(s) / (3) Deletar src.Entities.Vaga(s) / (4) Monitorar src.Entities.Vaga(s) / (5) Listar Usuário(s)");
         System.out.println("-> ");
         int opcaoAdm = sc.nextInt();
         switch (opcaoAdm) {
             case 1:
-                System.out.println("Você escolheu a opção: Criar Vaga(s).");
+                System.out.println("Você escolheu a opção: Criar src.Entities.Vaga(s).");
                 System.out.println();
                 System.out.println("Informe o número de vagas a serem criadas: ");
                 int numeroVagas = sc.nextInt();
                 criarVagas(sc);
                 break;
             case 2:
-                System.out.println("Você escolheu a opção: Editar Vaga(s).");
+                System.out.println("Você escolheu a opção: Editar src.Entities.Vaga(s).");
                 System.out.println();
                 editarVagaSistema(sc);
                 break;
             case 3:
-                System.out.println("Você escolheu a opção: Deletar Vaga(s).");
+                System.out.println("Você escolheu a opção: Deletar src.Entities.Vaga(s).");
                 System.out.println();
                 deletarVaga(sc);
                 break;
             case 4:
-                System.out.println("Você escolheu a opção: Monitorar Vaga(s).");
+                System.out.println("Você escolheu a opção: Monitorar src.Entities.Vaga(s).");
                 System.out.println();
                 monitorarVaga();
                 break;
@@ -92,7 +96,7 @@ public class parkLog {
         System.out.println("Vagas criadas com sucesso!");
     }
     public void editarVagaSistema(Scanner sc) {
-        System.out.println("Você escolheu a opção: Editar Vaga(s).");
+        System.out.println("Você escolheu a opção: Editar src.Entities.Vaga(s).");
         System.out.println();
         System.out.println("Digite o número da vaga que deseja editar:");
         String numeroVaga = sc.next();
@@ -105,18 +109,18 @@ public class parkLog {
 
             if (opcao == 1) {
                 vaga.desocuparVaga();
-                System.out.println("Vaga tornada disponível com sucesso!");
+                System.out.println("src.Entities.Vaga tornada disponível com sucesso!");
             } else if (opcao == 2) {
                 System.out.println("Digite a razão da indisponibilidade da vaga:");
                 sc.nextLine();
                 String razao = sc.nextLine();
                 vaga.ocuparVaga(razao);
-                System.out.println("Vaga tornada indisponível com sucesso!");
+                System.out.println("src.Entities.Vaga tornada indisponível com sucesso!");
             } else {
                 System.out.println("Opção inválida.");
             }
         } else {
-            System.out.println("Vaga não encontrada.");
+            System.out.println("src.Entities.Vaga não encontrada.");
         }
     }
     private Vaga encontrarVagaPorNumero(String numeroVaga) {
@@ -140,9 +144,9 @@ public class parkLog {
             }
         }
         if (!vagaEncontrada) {
-            System.out.println("Vaga não encontrada!");
+            System.out.println("src.Entities.Vaga não encontrada!");
         } else {
-            System.out.println("Vaga excluída com sucesso!");
+            System.out.println("src.Entities.Vaga excluída com sucesso!");
         }
     }
     public void monitorarVaga() {
@@ -183,7 +187,7 @@ public class parkLog {
         }
     }
     public void agendarVaga(Scanner sc) {
-        System.out.println("Agendamento de Vaga(s).");
+        System.out.println("Agendamento de src.Entities.Vaga(s).");
         System.out.println("Digite o número da vaga que deseja agendar:");
         String numeroVaga = sc.next();
         Vaga vagaEscolhida = encontrarVagaPorNumero(numeroVaga);
@@ -192,36 +196,36 @@ public class parkLog {
             if (vagaEscolhida.Disponivel()) {
                 System.out.println("Digite a data para o agendamento (DD/MM/AAAA):");
                 String dataAgendamento = sc.next();
-                System.out.println("Vaga agendada com sucesso para " + dataAgendamento);
+                System.out.println("src.Entities.Vaga agendada com sucesso para " + dataAgendamento);
                 LocalDateTime now = LocalDateTime.now();
                 System.out.println("Você solicitou essa vaga: " + now.getDayOfMonth() + "/" + now.getMonthValue() + "/" + now.getYear() + " " + now.getHour() + ":" + now.getMinute() + ":" + now.getSecond());
             } else {
                 System.out.println("A vaga escolhida não está disponível para agendamento.");
             }
         } else {
-            System.out.println("Vaga não encontrada.");
+            System.out.println("src.Entities.Vaga não encontrada.");
         }
     }
     public void alugarVaga(Scanner sc) {
-        System.out.println("Aluguel de Vaga(s).");
+        System.out.println("Aluguel de src.Entities.Vaga(s).");
         System.out.println("Digite o número da vaga que deseja alugar:");
         String numeroVaga = sc.next();
         Vaga vagaEscolhida = encontrarVagaPorNumero(numeroVaga);
 
         if (vagaEscolhida != null) {
             if (vagaEscolhida.Disponivel()) {
-                System.out.println("Vaga alugada com sucesso.");
+                System.out.println("src.Entities.Vaga alugada com sucesso.");
                 LocalDateTime now = LocalDateTime.now();
                 System.out.println("Você solicitou essa vaga: " + now.getDayOfMonth() + "/" + now.getMonthValue() + "/" + now.getYear() + " " + now.getHour() + ":" + now.getMinute() + ":" + now.getSecond());
             } else {
                 System.out.println("A vaga escolhida não está disponível para aluguel.");
             }
         } else {
-            System.out.println("Vaga não encontrada.");
+            System.out.println("src.Entities.Vaga não encontrada.");
         }
     }
     public void editarVagaUsuario(Scanner sc) {
-        System.out.println("Edição de Vaga(s).");
+        System.out.println("Edição de src.Entities.Vaga(s).");
 
         if (idCar == 0) {
             System.out.println("Você não selecionou nenhuma vaga para edição.");
@@ -244,7 +248,7 @@ public class parkLog {
                 idCar = 0;
                 System.out.println("Você desistiu da vaga com sucesso!");
             } else {
-                System.out.println("Vaga não encontrada.");
+                System.out.println("src.Entities.Vaga não encontrada.");
             }
         } else {
             System.out.println("Opção inválida.");
@@ -300,12 +304,12 @@ public class parkLog {
         System.out.println();
         System.out.println("Digite uma das opções abaixo para prosseguir.");
         System.out.println();
-        System.out.println("(1) Visualizar Vaga(s) / (2) Editar Vaga(s) / (3) Cadastrar Cartão(ões) / (4) Listar Cartão(ões) / (5) Escolher forma(s) de pagamento");
+        System.out.println("(1) Visualizar src.Entities.Vaga(s) / (2) Editar src.Entities.Vaga(s) / (3) Cadastrar Cartão(ões) / (4) Listar Cartão(ões) / (5) Escolher forma(s) de pagamento");
         System.out.println("-> ");
         int opcaoUsuario = sc.nextInt();
         switch (opcaoUsuario) {
             case 1:
-                System.out.println("Você escolheu a opção: Visualizar Vaga(s).");
+                System.out.println("Você escolheu a opção: Visualizar src.Entities.Vaga(s).");
                 System.out.println();
                 visualizarVaga();
                 System.out.println("Escolha uma das opções para prosseguir.");
@@ -313,7 +317,7 @@ public class parkLog {
                 System.out.println("-> ");
                 int escolhaUsuario = sc.nextInt();
                 if (escolhaUsuario == 1){
-                    System.out.println("Você escolheu a opção: Alugar Vaga(s).");
+                    System.out.println("Você escolheu a opção: Alugar src.Entities.Vaga(s).");
                     System.out.println();
                     alugarVaga(sc);
                 } else if (escolhaUsuario == 2){
@@ -328,7 +332,7 @@ public class parkLog {
                 }
                 break;
             case 2:
-                System.out.println("Você escolheu a opção: Editar Vaga(s).");
+                System.out.println("Você escolheu a opção: Editar src.Entities.Vaga(s).");
                 System.out.println();
                 editarVagaUsuario(sc);
                 break;

@@ -1,3 +1,5 @@
+package src.Entities;
+
 public class Modelo {
     private int idMod;
     private String marca;
@@ -35,6 +37,6 @@ public class Modelo {
     }
     @Override
     public String toString() {
-        return "ID: " + idMod + ", Marca: " + marca + ", Ano: " + ano + ", Modelo: " + modelo;
+        return "ID: " + idMod + ", Marca: " + marca + ", Ano: " + ano + ", src.Entities.Modelo: " + modelo;
     }
 }
