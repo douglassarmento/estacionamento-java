@@ -138,4 +138,13 @@ public class CadastroUsuario {
     public static int gerarId() {
         return cadastroUsuarioDAO.gerarId();
     }
+
+    public static boolean verificarCPF(String cpfLogin) {
+        for (Usuario usuario : CadastroUsuario.getPessoas()) {
+            if (usuario.getCpf().equals(cpfLogin)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

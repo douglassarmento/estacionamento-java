@@ -7,7 +7,6 @@ import src.Entities.User.Usuario;
 import src.Entities.User.UsuarioPremium;
 import src.Utils.CadastroUsuario;
 import src.Utils.CadastroVeiculo;
-import src.Entities.parkLog;
 
 import java.util.Scanner;
 public class Main {
@@ -58,11 +57,13 @@ public class Main {
             } else if (primeiroAcesso == 2) {
                 System.out.println("Parece que você já possui um cadastro no sistema. Informe seu CPF para realizar o login:");
                 String cpfLogin = sc.next();
-                if (realizarLogin(cpfLogin)) {
+
+                if (CadastroUsuario.verificarCPF(cpfLogin)) {
                     System.out.println("Login realizado com sucesso!");
                 } else {
                     System.out.println("CPF não cadastrado. Por favor, cadastre-se.");
                 }
+
                 System.out.println("Por favor, escolha uma das opções a seguir.");
 
                 System.out.println("Realizar login: (1) Usuário");
@@ -103,7 +104,7 @@ public class Main {
                             System.out.println("Seus dados estão errados, tente novamente.");
                         }
                     case 2:
-                        Carro carro = criarCarro();
+                        Carro carro = new Carro();
                         CadastroVeiculo.cadastrarVeiculo(carro);
                         break;
                     case 3:
@@ -115,7 +116,13 @@ public class Main {
                     case 5:
                         System.out.println("Informe a placa do carro: ");
                         String placaVerificar = sc.next();
-                        verificarPlaca(placaVerificar);
+
+                        if (CadastroVeiculo.verificarPlaca(placaVerificar))
+                            System.out.println("O carro com a placa " + placaVerificar + " está cadastrado.");
+                        else
+                            System.out.println("O carro com a placa " + placaVerificar + " não está cadastrado.");
+
+
                         break;
                     default:
                         System.out.println("Opção inválida.");
@@ -128,29 +135,4 @@ public class Main {
         } while (repetir==0);
     }
 
-    public static boolean realizarLogin(String cpfLogin) {
-        for (Usuario usuario : CadastroUsuario.getPessoas()) {
-            if (usuario.getCpf().equals(cpfLogin)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public static void verificarPlaca(String placaVerificar) {
-        boolean carroCadastrado = CadastroVeiculo.verificarCarroCadastrado(placaVerificar);
-        if (carroCadastrado) {
-            System.out.println("O carro com a placa " + placaVerificar + " está cadastrado.");
-        } else {
-            System.out.println("O carro com a placa " + placaVerificar + " não está cadastrado.");
-        }
-    }
-
-    public static Carro criarCarro() {
-        Carro carro = new Carro();
-        System.out.println("Informe a Placa:");
-        carro.setPlaca(sc.next());
-        System.out.println("Informe a Cor:");
-        carro.setCor(sc.next());
-        return carro;
-    }
 }

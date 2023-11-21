@@ -19,7 +19,7 @@ public class CadastroVeiculo {
             }
         }
     }
-    public static boolean verificarCarroCadastrado(String placa) {
+    public static boolean verificarPlaca(String placa) {
         for (Carro carro : carros) {
             if (carro.getPlaca().equals(placa)) {
                 return true;
