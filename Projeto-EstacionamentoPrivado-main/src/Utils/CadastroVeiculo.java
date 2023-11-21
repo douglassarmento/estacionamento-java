@@ -4,12 +4,12 @@ import src.Entities.Carro;
 
 import java.util.ArrayList;
 public class CadastroVeiculo {
-    private ArrayList<Carro> carros = new ArrayList<>();
-    public void cadastrarVeiculo(Carro carro) {
+    static private ArrayList<Carro> carros = new ArrayList<>();
+    public static void cadastrarVeiculo(Carro carro) {
         carros.add(carro);
         System.out.println("Veículo cadastrado com sucesso!");
     }
-    public void listarVeiculos() {
+    public static void listarVeiculos() {
         if (carros.isEmpty()) {
             System.out.println("Não há veículos cadastrados.");
         } else {
@@ -19,7 +19,7 @@ public class CadastroVeiculo {
             }
         }
     }
-    public boolean verificarCarroCadastrado(String placa) {
+    public static boolean verificarCarroCadastrado(String placa) {
         for (Carro carro : carros) {
             if (carro.getPlaca().equals(placa)) {
                 return true;

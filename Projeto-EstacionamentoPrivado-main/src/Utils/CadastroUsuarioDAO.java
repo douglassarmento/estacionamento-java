@@ -1,7 +1,6 @@
 package src.Utils;
 
 import src.Entities.User.Usuario;
-import org.jetbrains.annotations.NotNull;
 import src.Main.Conexao;
 
 import java.sql.Connection;
@@ -18,7 +17,7 @@ public class CadastroUsuarioDAO {
     }
 
     // Create
-    public void adiciona(@NotNull Usuario usuario) {
+    public void adiciona(Usuario usuario) {
         if (usuarioJaExiste(usuario.getidUser())) {
             System.out.println("Usuário com id " + usuario.getidUser() + " já existe na tabela.");
             return;
@@ -99,7 +98,7 @@ public class CadastroUsuarioDAO {
     }
 
     // Update
-    public void atualiza(@NotNull Usuario p) {
+    public void atualiza(Usuario p) {
         String sql = "UPDATE usuario SET cpf = ?, email = ?, nome = ?, senha = ? WHERE idUser = ?";
         try { PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, p.getCpf());

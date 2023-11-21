@@ -1,29 +1,78 @@
 package src.Utils;
 
 import src.Entities.User.Admin;
-import src.Entities.Funcionario;
+import src.Entities.User.Funcionario;
 import src.Entities.User.Usuario;
 import src.Entities.User.UsuarioPremium;
 
 import java.util.ArrayList;
+
+import static src.Main.Main.sc;
+
 public class CadastroUsuario {
-    CadastroUsuarioDAO cadastroUsuarioDAO = new CadastroUsuarioDAO();
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
-    private ArrayList<Admin> administradores = new ArrayList<>();
-    private ArrayList<Funcionario> funcionarios = new ArrayList<>();
-    private ArrayList<UsuarioPremium> usuariosPremium = new ArrayList<>();
-    public void cadastrarUsuario(Usuario p) {
-        usuarios.add(p);
-        cadastroUsuarioDAO.adiciona(p);
-        if (p instanceof Admin) {
-            administradores.add((Admin) p);
-        } else if (p instanceof Funcionario) {
-            funcionarios.add((Funcionario) p);
-        } else if (p instanceof UsuarioPremium) {
-            usuariosPremium.add((UsuarioPremium) p);
+
+    static CadastroUsuarioDAO cadastroUsuarioDAO = new CadastroUsuarioDAO();
+    private static ArrayList<Usuario> usuarios = new ArrayList<>();
+    private static ArrayList<Admin> administradores = new ArrayList<>();
+    private static ArrayList<Funcionario> funcionarios = new ArrayList<>();
+    private static ArrayList<UsuarioPremium> usuariosPremium = new ArrayList<>();
+
+    public static Usuario cadastrarUsuario() {
+
+        Usuario usuario = new Usuario();
+        int proximoIdUser = gerarId();
+        usuario.setidUser(proximoIdUser);
+
+        System.out.println("Qual tipo de usuário você deseja cadastrar?");
+        System.out.println("(1) Usuário Comum | (2) Funcionário | (3) Usuário Premium | (4) Administrador");
+        System.out.println("-> ");
+
+        int escolherUsuario = sc.nextInt();
+
+        var StrEscolha = new String[]{"Funcionário", "Usuário Premium", "Administrador"};
+
+        switch (escolherUsuario) {
+            case 1:
+                System.out.println("Você escolheu cadastrar Usuário Comum.");
+                break;
+            case 2:
+            case 3:
+            case 4:
+                System.out.printf("Você escolheu cadastrar %s. Informe o ID de %s:%n", StrEscolha[escolherUsuario - 2], StrEscolha[escolherUsuario - 2]);
+                int nonUserId = Integer.parseInt(sc.next());
+
+                usuario = switch (escolherUsuario) {
+                    case 2 -> new Funcionario(nonUserId);
+                    case 3 -> new UsuarioPremium(nonUserId);
+                    case 4 -> new Admin(nonUserId);
+                    default -> usuario;
+                };
+                usuario.setidUser(proximoIdUser);
+
+            default:
+                System.out.println("Opção inválida.");
         }
+
+        //adicionar depois na lista para preservar a classe real dela para motivos de polimorfismo
+        usuarios.add(usuario);
+        cadastroUsuarioDAO.adiciona(usuario);
+
+        switch (usuario) {
+            case Admin admin -> administradores.add(admin);
+            case Funcionario funcionario -> funcionarios.add(funcionario);
+            case UsuarioPremium usuarioPremium -> usuariosPremium.add(usuarioPremium);
+            case null, default -> {
+            }
+        }
+
+        return usuario;
     }
-    public void listarPessoas() {
+
+    //public static void cadastrarUsuario() {
+    //    cadastrarUsuario();
+    //}
+
+    public static void listarPessoas() {
         ArrayList<Usuario> usuarios = cadastroUsuarioDAO.listar();
         if (usuarios.isEmpty()) {
             System.out.println("Não há pessoas cadastradas.");
@@ -34,7 +83,7 @@ public class CadastroUsuario {
             }
         }
     }
-    public Usuario buscarUsuarioComumPorId(int idUser) {
+    public static Usuario buscarUsuarioComumPorId(int idUser) {
         for (Usuario usuario : usuarios) {
             if (usuario.getidUser() == idUser && !(usuario instanceof Admin) && !(usuario instanceof Funcionario) && !(usuario instanceof UsuarioPremium)) {
                 return usuario;
@@ -42,7 +91,7 @@ public class CadastroUsuario {
         }
         return null;
     }
-    public Admin buscarAdminPorId(int idUser) {
+    public static Admin buscarAdminPorId(int idUser) {
         for (Admin admin : administradores) {
             if (admin.getidUser() == idUser) {
                 return admin;
@@ -50,7 +99,7 @@ public class CadastroUsuario {
         }
         return null;
     }
-    public Funcionario buscarFuncionarioPorId(int idUser) {
+    public static Funcionario buscarFuncionarioPorId(int idUser) {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getidUser() == idUser) {
                 return funcionario;
@@ -58,7 +107,7 @@ public class CadastroUsuario {
         }
         return null;
     }
-    public UsuarioPremium buscarUsuarioPremiumPorId(int idUser) {
+    public static UsuarioPremium buscarUsuarioPremiumPorId(int idUser) {
         for (UsuarioPremium usuarioPremium : usuariosPremium) {
             if (usuarioPremium.getidUser() == idUser) {
                 return usuarioPremium;
@@ -66,27 +115,27 @@ public class CadastroUsuario {
         }
         return null;
     }
-    public ArrayList<Usuario> getPessoas() {
+    public static ArrayList<Usuario> getPessoas() {
         return usuarios;
     }
 
-    public Usuario buscarPorId(int idUser) {
+    public static Usuario buscarPorId(int idUser) {
         return cadastroUsuarioDAO.buscarPorId(idUser);
     }
 
-    public void atualiza(Usuario usuarioAtualizada) {
+    public static void atualiza(Usuario usuarioAtualizada) {
         cadastroUsuarioDAO.atualiza(usuarioAtualizada);
     }
 
-    public void exclui(int idUserExcluir) {
+    public static void exclui(int idUserExcluir) {
         cadastroUsuarioDAO.exclui(idUserExcluir);
     }
 
-    public void limparTabela() {
+    public static void limparTabela() {
         cadastroUsuarioDAO.limparTabela();
     }
 
-    public int gerarId() {
+    public static int gerarId() {
         return cadastroUsuarioDAO.gerarId();
     }
 }
