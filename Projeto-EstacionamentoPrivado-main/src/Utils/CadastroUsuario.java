@@ -7,12 +7,12 @@ import src.Entities.User.UsuarioPremium;
 
 import java.util.ArrayList;
 
+import static src.Entities.User.Usuario.usuarios;
 import static src.Main.Main.sc;
 
 public class CadastroUsuario {
 
     static CadastroUsuarioDAO cadastroUsuarioDAO = new CadastroUsuarioDAO();
-    private static ArrayList<Usuario> usuarios = new ArrayList<>();
     private static ArrayList<Admin> administradores = new ArrayList<>();
     private static ArrayList<Funcionario> funcionarios = new ArrayList<>();
     private static ArrayList<UsuarioPremium> usuariosPremium = new ArrayList<>();
@@ -116,7 +116,7 @@ public class CadastroUsuario {
         return null;
     }
     public static ArrayList<Usuario> getPessoas() {
-        return usuarios;
+        return (ArrayList<Usuario>) usuarios;
     }
 
     public static Usuario buscarPorId(int idUser) {

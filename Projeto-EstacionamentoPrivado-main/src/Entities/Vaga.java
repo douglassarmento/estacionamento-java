@@ -1,14 +1,19 @@
 package src.Entities;
 
+import java.util.ArrayList;
+
 public class Vaga {
     private String numero;
     private boolean disponivel;
     private String razaoIndisponibilidade;
 
+    public static ArrayList<Vaga> vagas = new ArrayList<>();
+
     public Vaga(String numero) {
         this.numero = numero;
         this.disponivel = true;
         this.razaoIndisponibilidade = "";
+        vagas.add(this);
     }
 
     public String getNumero() {
@@ -32,4 +37,15 @@ public class Vaga {
         this.disponivel = true;
         this.razaoIndisponibilidade = "";
     }
+
+
+    public static Vaga encontrarVagaPorNumero(String numeroVaga) {
+        for (Vaga vaga : vagas) {
+            if (vaga.getNumero().equalsIgnoreCase(numeroVaga)) {
+                return vaga;
+            }
+        }
+        return null;
+    }
+
 }

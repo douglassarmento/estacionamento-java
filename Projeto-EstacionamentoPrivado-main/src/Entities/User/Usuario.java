@@ -2,6 +2,9 @@ package src.Entities.User;
 
 import src.Main.Main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
     private int idUser;
     private String cpf, nome, email, senha;
@@ -35,6 +38,9 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public static List<Usuario> usuarios = new ArrayList<>();
+
     public static Usuario criarUsuario() {
         Usuario usuario = new Usuario();
         System.out.println("Informe o CPF:");
@@ -45,6 +51,9 @@ public class Usuario {
         usuario.setEmail(Main.sc.next());
         System.out.println("Informe a senha:");
         usuario.setSenha(Main.sc.next());
+
+        usuarios.add(usuario);
+
         return usuario;
     }
     @Override
